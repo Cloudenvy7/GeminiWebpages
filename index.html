@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFS | 4Culture Strategic Partner Dashboard</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="[https://cdn.jsdelivr.net/npm/chart.js](https://cdn.jsdelivr.net/npm/chart.js)"></script>
+    <!-- Chosen Palette: Slate & Sky - A professional and clean palette using neutral grays (Slate) for the base and calming blues (Sky) for accents and data visualization, creating a focused and modern feel. -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard. The structure is task-oriented, allowing for quick high-level analysis and deep-dive exploration. 
+        1.  **Header:** For branding and navigation.
+        2.  **Overview Section:** To provide immediate context on the project's purpose and the strategic framework being used (Tiers 1, 2, 3), ensuring any user understands the "why" behind the data.
+        3.  **KPI & Chart Dashboard:** Presents a high-level, visual summary of the analysis. KPIs offer at-a-glance totals, while the doughnut and bar charts allow for rapid understanding of the distribution of potential partners by alignment tier and their primary operational needs. This addresses the goal of quick synthesis.
+        4.  **Interactive Partner List:** This is the core of the application. A searchable and filterable table allows for targeted exploration of the 300 organizations. This structure was chosen over a static list to make the large dataset manageable and actionable. Users can quickly find specific organizations or filter for high-priority segments (e.g., all Tier 1 organizations needing "Program Management"). Each row provides a concise summary, with a "Show Pitch" button revealing a tailored value proposition, turning data directly into an outreach tool.
+        This top-down structure (Overview -> Dashboard -> Detailed List) guides the user from a broad understanding to specific, actionable insights, which is ideal for strategic planning and sales enablement.
+    -->
+    <!-- Visualization & Content Choices: 
+        - **Data Source:** "BFS: 4Culture Roster Analysis" markdown document.
+        - **KPIs (Inform):** Simple text blocks display total organizations and counts per tier. This provides immediate, quantifiable results of the analysis. Implemented with HTML/Tailwind.
+        - **Tier Distribution (Compare Proportions):** A doughnut chart (Chart.js/Canvas) was chosen to clearly and immediately show the proportion of organizations in each strategic tier (1, 2, 3). It's more visually engaging than a simple table for this purpose.
+        - **Operational Needs (Compare Frequencies):** A horizontal bar chart (Chart.js/Canvas) visualizes the most common operational needs across the 300 organizations. This helps identify the most prevalent pain points BFS can solve, informing marketing messaging and cohort curriculum focus. A horizontal bar chart is used for better readability of the category labels.
+        - **Partner Database (Organize & Explore):** An interactive HTML table with JavaScript-powered search and filtering is used to present the detailed list. This is the most effective way to handle a large, multi-faceted dataset, allowing users to query the data based on their specific goals (e.g., finding all "Tier 1" organizations). The "Show Pitch" toggle (JS show/hide) provides deeper, contextual information without cluttering the initial view, aligning with the goal of progressive disclosure.
+        - **Justification:** This combination of high-level charts and a detailed, interactive table provides a comprehensive yet easy-to-navigate view of the strategic landscape. It allows users to see the big picture and then drill down into the specifics needed for targeted action.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-slate-900">4Culture Partner Analysis</h1>
+            <p class="text-lg text-slate-600 mt-2">An interactive dashboard for identifying strategic partnership opportunities for BlackFox Studios.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Introduction Section -->
+            <section id="introduction" class="mb-10 bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-semibold text-slate-800 mb-4">Strategic Framework</h2>
+                <p class="text-slate-600 mb-4">
+                    This dashboard categorizes over 300 organizations from the 4Culture awardee list into three strategic tiers based on their alignment with BlackFox Studios' mission and capabilities. The goal is to prioritize outreach efforts, focusing on organizations where BFS can provide maximum value through its "AI for Nonprofits" cohort model and other digital empowerment services. The analysis considers mission alignment, operational complexity, and potential for high-impact collaboration.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="p-4 bg-sky-100 rounded-lg">
+                        <h3 class="font-bold text-sky-800">Tier 1: Prime Candidates</h3>
+                        <p class="text-sm text-sky-700">High mission alignment, complex operational needs. Ideal for pilot cohorts and case studies.</p>
+                    </div>
+                    <div class="p-4 bg-amber-100 rounded-lg">
+                        <h3 class="font-bold text-amber-800">Tier 2: High-Potential</h3>
+                        <p class="text-sm text-amber-700">Primarily arts/culture groups with clear operational needs that can be streamlined.</p>
+                    </div>
+                    <div class="p-4 bg-gray-200 rounded-lg">
+                        <h3 class="font-bold text-gray-800">Tier 3: General
